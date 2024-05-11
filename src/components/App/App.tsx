@@ -7,9 +7,11 @@ const App = () => {
   return (
     <AudioProvider>
       <AutoScrollProvider>
-        <div className="h-screen flex flex-col justify-between text-white mx-auto bg-purple">
-          <Chat />
-          <Player />
+        <div className="h-[100vh]">
+          <div className="h-[100svh] flex flex-col justify-between text-white mx-auto bg-purple">
+            <Chat />
+            <Player />
+          </div>
         </div>
       </AutoScrollProvider>
     </AudioProvider>
