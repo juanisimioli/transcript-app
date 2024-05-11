@@ -77,11 +77,26 @@ export const useAudioPlayer = (): AudioContextType => {
     }
   }, []);
 
+  const handleLoadedMetadata = () => {
+    if (audioRef.current) {
+      setDuration(audioRef.current.duration);
+    }
+  };
+
   useEffect(() => {
     if (audioRef.current) {
-      setDuration(Number(audioRef.current.duration));
+      audioRef.current.addEventListener("timeupdate", handleLoadedMetadata);
     }
-  }, [audioRef]);
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.removeEventListener(
+          "timeupdate",
+          handleLoadedMetadata
+        );
+      }
+    };
+  }, []);
 
   // Set up event listeners for "play" and "pause" events on the audio element.
   // When the audio starts playing, it continuously updates the current time of the audio playback.
