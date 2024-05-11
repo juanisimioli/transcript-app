@@ -79,7 +79,7 @@ export const useAudioPlayer = (): AudioContextType => {
 
   useEffect(() => {
     if (audioRef.current) {
-      setDuration(audioRef.current.duration);
+      setDuration(Number(audioRef.current.duration));
     }
   }, [audioRef]);
 
